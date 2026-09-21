@@ -1,0 +1,98 @@
+# Baseline Notebook
+
+## Project: Customer Churn Prediction
+
+### 1. Objective
+
+The purpose of this notebook is to inspect the customer churn dataset and create a simple non-ML baseline.
+
+The baseline will predict the majority class for every customer. This gives us a simple result to compare with a machine learning model later.
+
+The dataset contains customer information such as tenure, support tickets, monthly spending, last login activity, and plan type.
+
+---
+
+## 2. Import Libraries
+
+```python
+import pandas as pd
+from sklearn.dummy import DummyClassifier
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix
+```
+
+These libraries will be used for:
+
+* `pandas` → reading and checking the dataset
+* `DummyClassifier` → creating the simple non-ML baseline
+* `sklearn.metrics` → measuring the baseline performance
+
+---
+
+## 3. Load the Dataset
+
+```python
+df = pd.read_csv("customer_churn.csv")
+
+print(df.head())
+print("\nDataset shape:", df.shape)
+```
+
+The dataset contains **12 rows and 7 columns**.
+
+The columns are:
+
+* `customer_id`
+* `tenure_months`
+* `support_tickets`
+* `monthly_spend_inr`
+* `last_login_days`
+* `plan_type`
+* `churned`
+
+---
+
+## 4. Check the Dataset
+
+```python
+print(df.info())
+print("\nMissing values:")
+print(df.isnull().sum())
+
+print("\nDuplicate rows:", df.duplicated().sum())
+```
+
+### Observation
+
+The dataset contains **12 customer records**.
+
+No missing values were identified and no duplicate rows were identified.
+
+Because the dataset is very small, the results should be treated as an educational demonstration rather than evidence for a real customer-churn system.
+
+---
+
+## 5. Check the Target Variable
+
+```python
+print(df["churned"].value_counts())
+print("\nTarget percentage:")
+print(df["churned"].value_counts(normalize=True) * 100)
+```
+
+The target variable is `churned`.
+
+* `0` = customer did not churn
+* `1` = customer churned
+
+There are:
+
+* **7 customers who did not churn**
+* **5 customers who churned**
+
+Therefore, the majority class is **0 (did not churn)**.
+
+---
+
+## 6. Create the Non-ML Baseline
+
+The simplest baseline is to predict the maj
