@@ -1,0 +1,131 @@
+# Risk Register
+
+## Project: Customer Churn Prediction
+
+### 1. Very Small Dataset
+
+The dataset contains only 12 customer records. Because of this, the model results may not be stable and may not represent a large customer population.
+
+**Risk:** The model may give unreliable results.
+
+**Safeguard:** Treat the project as an educational experiment and use a larger dataset before any real-world use.
+
+---
+
+### 2. Data Leakage
+
+Data leakage can happen if information is used by the model that would not actually be available when making a prediction.
+
+**Risk:** The model may appear more accurate than it really is.
+
+**Safeguard:** Only use information that would be available before the customer churns.
+
+---
+
+### 3. False Positive
+
+A false positive happens when the model predicts that a customer will churn, but the customer does not actually churn.
+
+**Risk:** The company may spend time or resources trying to retain a customer who was not going to leave.
+
+**Safeguard:** The prediction should be reviewed by a human before taking action.
+
+---
+
+### 4. False Negative
+
+A false negative happens when the model predicts that a customer will not churn, but the customer actually churns.
+
+**Risk:** A customer who may need attention could be missed.
+
+**Safeguard:** Recall and false-negative cases should be checked during model evaluation.
+
+---
+
+### 5. Privacy Risk
+
+Customer information may contain information that should not be unnecessarily exposed or misused.
+
+**Risk:** Customer data could be used for purposes that were not intended.
+
+**Safeguard:** Use only the information required for the project and verify permission before using real customer data.
+
+---
+
+### 6. Using Customer ID as a Feature
+
+`customer_id` is an identifier and does not describe customer behavior.
+
+**Risk:** Using it as a feature could create meaningless patterns in the model.
+
+**Safeguard:** `customer_id` will be excluded from the model features.
+
+---
+
+### 7. Poor Data Quality
+
+Incorrect values, missing values, duplicates, or unusual values can affect model performance.
+
+**Risk:** The model may learn from incorrect or poor-quality information.
+
+**Safeguard:** Check missing values, duplicate records, data types, unusual values, and target distribution before training.
+
+---
+
+### 8. Model Performance Changes
+
+Customer behavior can change over time, so a model that works on one dataset may not continue to work in the same way later.
+
+**Risk:** Model performance may decrease over time.
+
+**Safeguard:** Monitor model performance and data quality regularly.
+
+---
+
+### 9. Automatic Decision-Making
+
+A prediction should not automatically result in an important decision about a customer.
+
+**Risk:** An incorrect prediction could lead to inappropriate action.
+
+**Safeguard:** Keep a human involved in the final decision.
+
+---
+
+### 10. Low-Confidence Predictions
+
+Sometimes the model may not have enough reliable information to make a useful prediction.
+
+**Risk:** An uncertain prediction may be treated as a reliable result.
+
+**Safeguard:** Low-confidence cases should be sent for human review instead of automatically taking action.
+
+---
+
+### 11. Rollback
+
+If the model starts producing unreliable results or serious data problems are found, it should not continue being used.
+
+**Safeguard:** Stop using the ML model and return to the simple baseline while the problem is investigated.
+
+---
+
+## Trial and Error / Development Notes
+
+During the project, I checked the dataset before deciding how to use it.
+
+One important issue was the very small number of records. This means that model results may change significantly when only a few records are different.
+
+I also checked the columns and identified `customer_id` as an identifier rather than a useful prediction feature, so it will not be used for training.
+
+The target variable was also checked. There are 7 customers who did not churn and 5 customers who churned. This helped us create the majority-class baseline before moving to the ML model.
+
+These checks helped identify possible risks before training the model.
+
+## Conclusion
+
+The main risks in this project are the very small dataset, data leakage, false positives, false negatives, privacy, and incorrect use of model predictions.
+
+The model will therefore be treated as a decision-support tool for this project and not as an automatic decision-maker.
+
+The current results are for educational purposes and should not be used to make real customer decisions.
